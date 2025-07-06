@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.2em;
+        }
+        #ageDisplay {
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+        .input-container {
+            margin: 1em 0;
+        }
+        input[type="date"] {
+            padding: 0.5em;
+            font-size: 1em;
+            border: none;
+            border-radius: 10px;
+        }
+        button {
+            padding: 0.5em 1.2em;
+            font-size: 1em;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 2em;
+            font-size: 1.2em;
+            max-width: 90%;
+        }
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif');
+            background-size: cover;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti"></div>
+    <h1>🎉 Happy Birthday! 🎂</h1>
+    <div class="input-container">
+        <label for="birthdate">Enter your birthdate:</label><br>
+        <input type="date" id="birthdate">
+        <button onclick="calculateAge()">Tell Me!</button>
+    </div>
+    <div id="ageDisplay"></div>
+    <div class="message">
+        Wishing you the happiest of birthdays! May your day be filled with joy, love, and all your favorite things. You’re special, and today is all about you. 🎈💖
+    </div>
+
+    <script>
+        function calculateAge() {
+            const input = document.getElementById('birthdate').value;
+            if (!input) return;
+            const birthDate = new Date(input);
+            const now = new Date();
+            let ageInMs = now - birthDate;
+            let seconds = Math.floor(ageInMs / 1000);
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let days = Math.floor(hours / 24);
+            let years = Math.floor(days / 365.25);
+
+            days %= 365.25;
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+
+            document.getElementById('ageDisplay').textContent =
+                `You are ${years} years, ${Math.floor(days)} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds old!`;
+        }
+    </script>
+</body>
+</html>
